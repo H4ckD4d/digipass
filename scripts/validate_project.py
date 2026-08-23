@@ -27,29 +27,21 @@ REQUIRED_FILES = [
     "scripts/dsi.py",
     "scripts/serve_dashboard.py",
     "scripts/validate_dashboard.py",
+    "scripts/test_web_core.js",
     "web/index.html",
     "web/styles.css",
     "web/app.js",
+    "web/dsi-core.js",
+    "web/wizard.js",
     "docs/dashboard.md",
+    "docs/guided-assessment.md",
     "docs/privacy-threat-model.md",
 ]
 
 FORBIDDEN_KEYS = {
-    "password",
-    "passwords",
-    "token",
-    "tokens",
-    "session_token",
-    "session_cookie",
-    "cookie",
-    "cookies",
-    "private_key",
-    "recovery_code",
-    "recovery_codes",
-    "latitude",
-    "longitude",
-    "coordinates",
-    "private_messages",
+    "password", "passwords", "token", "tokens", "session_token", "session_cookie",
+    "cookie", "cookies", "private_key", "recovery_code", "recovery_codes", "latitude",
+    "longitude", "coordinates", "private_messages",
 }
 
 
@@ -79,7 +71,6 @@ def check_assessment(name: str, assessment, errors: list[str]) -> None:
 
 def main() -> int:
     errors: list[str] = []
-
     for relative in REQUIRED_FILES:
         if not (ROOT / relative).is_file():
             errors.append(f"missing required file: {relative}")

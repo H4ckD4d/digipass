@@ -9,142 +9,60 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to dashboard</a>
-
   <header class="site-header">
-    <div>
-      <p class="eyebrow">PROJECT h4ckd4d</p>
-      <h1>Digital Safety Intelligence</h1>
-      <p class="subtitle">Privacy-first self-exposure, account security, family safety, and protective action planning.</p>
-    </div>
-    <div class="privacy-badge" aria-label="Local processing only">
-      <span class="privacy-dot" aria-hidden="true"></span>
-      Local processing only
-    </div>
+    <div><p class="eyebrow">PROJECT h4ckd4d</p><h1>Digital Safety Intelligence</h1><p class="subtitle">Privacy-first self-exposure, account security, family safety, and protective action planning.</p></div>
+    <div class="privacy-badge" aria-label="Local processing only"><span class="privacy-dot" aria-hidden="true"></span>Local processing only</div>
   </header>
-
   <main id="main">
-    <section class="notice" aria-labelledby="privacy-title">
-      <div>
-        <p class="eyebrow">Privacy boundary</p>
-        <h2 id="privacy-title">Your assessment stays in this browser session.</h2>
+    <section class="notice" aria-labelledby="privacy-title"><div><p class="eyebrow">Privacy boundary</p><h2 id="privacy-title">Your assessment stays in this browser session.</h2></div><p>No account, backend, analytics, cookies, external requests, automatic storage, or third-party profiling. Import or generate only information you own or have clear consent to review.</p></section>
+
+    <section id="wizard" class="panel" aria-labelledby="wizard-title">
+      <div class="section-heading"><div><p class="eyebrow">DSI v1.2</p><h2 id="wizard-title">Guided safety assessment</h2></div><span class="local-label">No personal identifiers requested</span></div>
+      <p class="muted">Answer control-focused questions. DSI does not ask for names, usernames, passwords, private messages, or precise location.</p>
+      <div id="wizardStart" class="wizard-start">
+        <button id="wizardModeSelf" class="button" type="button">Start self-assessment</button>
+        <button id="wizardModeFamily" class="button secondary" type="button">Start consensual family assessment</button>
+        <p>Family mode is for shared safety planning with clear consent, not hidden monitoring.</p>
       </div>
-      <p>No account, backend, analytics, cookies, external requests, automatic storage, or third-party profiling. Import only information you own or have clear consent to review.</p>
+      <div id="wizardStep" class="wizard-step" hidden>
+        <p id="wizardSection" class="eyebrow"></p><h3 id="wizardPrompt" tabindex="-1"></h3><p id="wizardHelp" class="muted"></p>
+        <div id="wizardChoices" class="wizard-choices" role="radiogroup" aria-label="Assessment answer"></div>
+        <div class="wizard-actions"><button id="wizardBack" class="button secondary" type="button">Back</button><button id="wizardNext" class="button" type="button">Next</button><button id="wizardCancel" class="text-button" type="button">Clear wizard session</button></div>
+      </div>
+      <div id="wizardReview" class="wizard-review" hidden>
+        <p class="eyebrow">Review</p><h3>Confirm your control answers</h3><ul id="wizardReviewList" class="review-list"></ul>
+        <p class="muted">Only unmet or uncertain controls become findings. “Not sure” lowers confidence to show that verification is needed.</p>
+        <div class="wizard-actions"><button id="wizardGenerate" class="button" type="button">Generate and load assessment</button><button id="wizardDownload" class="button secondary" type="button" disabled>Download assessment JSON</button><button id="wizardCancelReview" class="text-button" type="button">Clear wizard session</button></div>
+      </div>
+      <div id="wizardStatus" class="status" role="status" aria-live="polite">Wizard data exists only in this browser session.</div>
     </section>
 
     <section class="panel" aria-labelledby="assessment-title">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">Assessment</p>
-          <h2 id="assessment-title">Load your safety assessment</h2>
-        </div>
-        <button id="demoButton" class="button secondary" type="button">Load synthetic demo</button>
-      </div>
-
+      <div class="section-heading"><div><p class="eyebrow">Import / comparison</p><h2 id="assessment-title">Load an existing safety assessment</h2></div><button id="demoButton" class="button secondary" type="button">Load synthetic demo</button></div>
       <div class="upload-grid">
-        <label class="upload-card" for="currentFile">
-          <span class="upload-title">Current assessment</span>
-          <span>Import a DSI assessment JSON file.</span>
-          <input id="currentFile" type="file" accept="application/json,.json">
-        </label>
-
-        <label class="upload-card" for="priorFile">
-          <span class="upload-title">Prior assessment</span>
-          <span>Optional: compare remediation progress in memory.</span>
-          <input id="priorFile" type="file" accept="application/json,.json">
-        </label>
-      </div>
-
-      <div id="status" class="status" role="status" aria-live="polite">No assessment loaded.</div>
+        <label class="upload-card" for="currentFile"><span class="upload-title">Current assessment</span><span>Import a DSI assessment JSON file.</span><input id="currentFile" type="file" accept="application/json,.json"></label>
+        <label class="upload-card" for="priorFile"><span class="upload-title">Prior assessment</span><span>Optional: compare remediation progress in memory.</span><input id="priorFile" type="file" accept="application/json,.json"></label>
+      </div><div id="status" class="status" role="status" aria-live="polite">No assessment loaded.</div>
     </section>
 
     <section class="metrics" aria-label="Risk overview">
-      <article class="metric-card">
-        <span class="metric-label">Findings</span>
-        <strong id="findingCount">—</strong>
-        <span class="metric-help">Validated items in the current assessment</span>
-      </article>
-      <article class="metric-card">
-        <span class="metric-label">Average risk</span>
-        <strong id="averageRisk">—</strong>
-        <span id="averagePriority" class="metric-help">No assessment</span>
-      </article>
-      <article class="metric-card">
-        <span class="metric-label">High / urgent</span>
-        <strong id="highCount">—</strong>
-        <span class="metric-help">Items scoring above 60</span>
-      </article>
-      <article class="metric-card">
-        <span class="metric-label">Change</span>
-        <strong id="riskDelta">—</strong>
-        <span class="metric-help">Prior vs. current average risk</span>
-      </article>
+      <article class="metric-card"><span class="metric-label">Findings</span><strong id="findingCount">—</strong><span class="metric-help">Validated items in the current assessment</span></article>
+      <article class="metric-card"><span class="metric-label">Average risk</span><strong id="averageRisk">—</strong><span id="averagePriority" class="metric-help">No assessment</span></article>
+      <article class="metric-card"><span class="metric-label">High / urgent</span><strong id="highCount">—</strong><span class="metric-help">Items scoring above 60</span></article>
+      <article class="metric-card"><span class="metric-label">Change</span><strong id="riskDelta">—</strong><span class="metric-help">Prior vs. current average risk</span></article>
     </section>
 
     <section class="dashboard-grid">
-      <article class="panel" aria-labelledby="findings-title">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">Priorities</p>
-            <h2 id="findings-title">Protective action queue</h2>
-          </div>
-          <button id="exportButton" class="button" type="button" disabled>Export Markdown report</button>
-        </div>
-        <div id="findingsTable" class="empty-state">Load an assessment to view prioritized findings.</div>
-      </article>
-
-      <aside class="panel" aria-labelledby="checklist-title">
-        <p class="eyebrow">Safety controls</p>
-        <h2 id="checklist-title">Protection checklist</h2>
-        <p class="muted">This checklist is session-only and is never saved automatically.</p>
-
-        <div id="checklist" class="checklist">
-          <label><input type="checkbox"> Strong MFA enabled on important accounts</label>
-          <label><input type="checkbox"> Recovery email/phone reviewed and current</label>
-          <label><input type="checkbox"> Privacy audiences reviewed</label>
-          <label><input type="checkbox"> Location-sharing settings reviewed</label>
-          <label><input type="checkbox"> Device lock and updates enabled</label>
-          <label><input type="checkbox"> Trusted support/reporting plan agreed</label>
-        </div>
-        <div class="progress-track" aria-label="Checklist completion">
-          <div id="progressBar" class="progress-bar"></div>
-        </div>
-        <p id="progressText" class="progress-text">0% complete</p>
-      </aside>
+      <article class="panel" aria-labelledby="findings-title"><div class="section-heading"><div><p class="eyebrow">Priorities</p><h2 id="findings-title">Protective action queue</h2></div><button id="exportButton" class="button" type="button" disabled>Export Markdown report</button></div><div id="findingsTable" class="empty-state">Load or generate an assessment to view prioritized findings.</div></article>
+      <aside class="panel" aria-labelledby="checklist-title"><p class="eyebrow">Safety controls</p><h2 id="checklist-title">Protection checklist</h2><p class="muted">This checklist is session-only and is never saved automatically.</p><div id="checklist" class="checklist"><label><input type="checkbox"> Strong MFA enabled on important accounts</label><label><input type="checkbox"> Recovery email/phone reviewed and current</label><label><input type="checkbox"> Privacy audiences reviewed</label><label><input type="checkbox"> Location-sharing settings reviewed</label><label><input type="checkbox"> Device lock and updates enabled</label><label><input type="checkbox"> Trusted support/reporting plan agreed</label></div><div class="progress-track" aria-label="Checklist completion"><div id="progressBar" class="progress-bar"></div></div><p id="progressText" class="progress-text">0% complete</p></aside>
     </section>
 
     <section class="dashboard-grid">
-      <article class="panel" aria-labelledby="family-title">
-        <p class="eyebrow">Family mode</p>
-        <h2 id="family-title">Consent-based digital safety</h2>
-        <p>Family mode is designed for shared safety planning, not hidden monitoring. Agree on what will be reviewed, minimize identifiers, avoid collecting private-message contents, and use platform safety/reporting features when concerns arise.</p>
-        <div class="principle-grid">
-          <div><strong>Consent</strong><span>Review only agreed accounts and settings.</span></div>
-          <div><strong>Minimize</strong><span>Keep only what is necessary for protection.</span></div>
-          <div><strong>Support</strong><span>Use trusted adults and appropriate reporting channels.</span></div>
-          <div><strong>Protect</strong><span>Prioritize account hardening over investigation.</span></div>
-        </div>
-      </article>
-
-      <article class="panel" aria-labelledby="evidence-title">
-        <p class="eyebrow">Evidence minimization</p>
-        <h2 id="evidence-title">Preserve less, preserve better</h2>
-        <p>When a legitimate safety report needs documentation, record only the minimum useful context: date/time, platform, brief description, and a reference to where the original is retained securely. Do not put passwords, recovery codes, session tokens, precise live locations, or unnecessary private content into DSI files.</p>
-      </article>
+      <article class="panel" aria-labelledby="family-title"><p class="eyebrow">Family mode</p><h2 id="family-title">Consent-based digital safety</h2><p>Family mode is designed for shared safety planning, not hidden monitoring. Agree on what will be reviewed, minimize identifiers, avoid collecting private-message contents, and use platform safety/reporting features when concerns arise.</p><div class="principle-grid"><div><strong>Consent</strong><span>Review only agreed accounts and settings.</span></div><div><strong>Minimize</strong><span>Keep only what is necessary for protection.</span></div><div><strong>Support</strong><span>Use trusted adults and appropriate reporting channels.</span></div><div><strong>Protect</strong><span>Prioritize account hardening over investigation.</span></div></div></article>
+      <article class="panel" aria-labelledby="evidence-title"><p class="eyebrow">Evidence minimization</p><h2 id="evidence-title">Preserve less, preserve better</h2><p>When a legitimate safety report needs documentation, record only the minimum useful context: date/time, platform, brief description, and a reference to where the original is retained securely. Do not put passwords, recovery codes, session tokens, precise live locations, or unnecessary private content into DSI files.</p></article>
     </section>
   </main>
-
-  <footer>
-    <div class="signature">
-      <strong>Chris Cruz | h4ckd4d</strong>
-      <span>Cybersecurity • Red Team • Advanced Cyber Defense &amp; Intelligence</span>
-      <span>OSCP | CEH | CISSP | MITRE ATT&amp;CK® Contributor</span>
-      <span class="founder">Founder — Project h4ckd4d</span>
-      <span>Technology for Child Protection • OSINT • Threat Intelligence</span>
-      <em>“Protect. Detect. Defend.”</em>
-    </div>
-    <p>Developers, privacy engineers, educators, UX/accessibility specialists, QA engineers, and digital-safety practitioners are invited to contribute through professional pull requests and review.</p>
-  </footer>
-
-  <script src="app.js"></script>
+  <footer><div class="signature"><strong>Chris Cruz | h4ckd4d</strong><span>Cybersecurity • Red Team • Advanced Cyber Defense &amp; Intelligence</span><span>OSCP | CEH | CISSP | MITRE ATT&amp;CK® Contributor</span><span class="founder">Founder — Project h4ckd4d</span><span>Technology for Child Protection • OSINT • Threat Intelligence</span><em>“Protect. Detect. Defend.”</em></div><p>Developers, privacy engineers, educators, UX/accessibility specialists, QA engineers, and digital-safety practitioners are invited to contribute through professional pull requests and review.</p></footer>
+  <script src="dsi-core.js"></script><script src="app.js"></script><script src="wizard.js"></script>
 </body>
 </html>

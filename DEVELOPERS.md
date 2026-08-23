@@ -29,6 +29,19 @@ Help reduce data collection, retention, and exposure while keeping assessments u
 
 Build tools that process assessment information on the user's device rather than sending sensitive data to third parties.
 
+### Guided assessment engineering
+
+Help improve the v1.2 wizard while preserving these principles:
+
+- questions assess security controls rather than personal traits;
+- no names, usernames, passwords, private messages, or precise location are required;
+- `Not sure` must remain distinct from a confirmed missing control;
+- self and consensual-family scopes must remain explicit;
+- generated findings must stay explainable and reviewable;
+- question changes require tests and a privacy-impact explanation.
+
+High-value work includes wording review, translations, accessibility research, safer scoring defaults, explainability, test coverage, and structured question-versioning.
+
 ### Dashboard and accessibility
 
 Improve the local dashboard while preserving the following guarantees:
@@ -55,18 +68,19 @@ Develop structured ways to record enough information for a legitimate report wit
 
 ### Testing and validation
 
-Add synthetic fixtures, schema tests, dashboard privacy tests, accessibility checks, CI, and documentation checks.
+Add synthetic fixtures, schema tests, dashboard privacy tests, guided-engine tests, accessibility checks, CI, and documentation checks.
 
-## Review expectations for dashboard contributions
+## Review expectations for dashboard and wizard contributions
 
-Frontend changes should explain:
+Frontend or guided-assessment changes should explain:
 
 1. what user problem the change solves;
 2. whether any new data is collected or retained;
 3. whether the change introduces a network dependency;
-4. how imported content is safely rendered;
+4. how imported or generated content is safely rendered;
 5. how the feature behaves for family/youth safety use;
-6. what automated validation covers the change.
+6. whether question wording could cause unnecessary disclosure;
+7. what automated validation covers the change.
 
 Changes that add background telemetry, covert monitoring, unnecessary persistence, third-party profiling, or hidden location collection are outside the project's scope.
 
