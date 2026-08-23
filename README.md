@@ -1,1 +1,175 @@
-# digipass
+# h4ckd4d Digital Safety Intelligence
+
+> **Original creator, project owner, and primary maintainer: Chris Cruz | h4ckd4d**
+
+**h4ckd4d Digital Safety Intelligence (DSI)** is a privacy-first defensive framework for helping individuals and families understand their own digital exposure, prioritize account and privacy risks, preserve minimal evidence when something concerning happens, and improve everyday online safety.
+
+The project intentionally avoids third-party profiling, covert surveillance, location tracking, credential collection, and unauthorized scraping. It is designed around **consent, data minimization, local processing, explainable risk scoring, and practical protective actions**.
+
+> **Safety boundary:** DSI is for self-assessment, consensual family safety planning, education, and defensive review. It must not be used to locate, monitor, impersonate, harass, profile, or investigate another person without a legitimate and lawful basis.
+
+## Mission
+
+```text
+Understand your exposure
+        ↓
+Reduce unnecessary public data
+        ↓
+Strengthen accounts and recovery paths
+        ↓
+Recognize suspicious or harmful contact
+        ↓
+Preserve only the evidence you actually need
+        ↓
+Escalate through trusted, lawful channels when appropriate
+```
+
+## Core pillars
+
+| Pillar | Purpose |
+| --- | --- |
+| Self-Exposure Assessment | Review the user's own public-facing digital footprint and account inventory. |
+| Privacy Risk | Identify unnecessary exposure and weak recovery/security controls. |
+| Account Security | Promote strong authentication, recovery hygiene, and phishing-resistant practices. |
+| Family Digital Safety | Provide consent-based safety planning for families and young people. |
+| Evidence Preservation | Preserve minimal, relevant records without escalating or investigating independently. |
+| Safety Intelligence | Turn observations into prioritized, explainable protective actions. |
+
+## What DSI does not do
+
+DSI does not:
+
+- scrape social networks for third-party profiles;
+- infer private traits about people;
+- track precise location;
+- collect private messages or passwords;
+- bypass account protections;
+- search for exposed minors;
+- perform doxxing or identity correlation against third parties;
+- automate confrontation or retaliation;
+- treat a public observation as proof of wrongdoing.
+
+## Architecture
+
+```text
+Consent / Self-Declared Scope
+            ↓
+Local Assessment Input
+            ↓
+Data Minimization
+            ↓
+Exposure Classification
+            ↓
+Risk + Confidence Scoring
+            ↓
+Protective Recommendations
+            ↓
+Optional Minimal Evidence Record
+            ↓
+Human Review / Trusted Escalation
+```
+
+See [`docs/architecture.md`](docs/architecture.md).
+
+## Offline-first CLI
+
+The initial CLI performs local validation and scoring only. It does **not** query websites or external services.
+
+```bash
+python scripts/dsi.py validate examples/self-assessment.synthetic.json
+python scripts/dsi.py score examples/self-assessment.synthetic.json
+python scripts/dsi.py report examples/self-assessment.synthetic.json
+```
+
+## Risk model
+
+DSI separates:
+
+- **exposure** — how visible or reachable something is;
+- **impact** — potential consequence if the exposure is abused;
+- **control strength** — MFA, recovery, privacy settings, and account hygiene;
+- **confidence** — how reliable the input is;
+- **urgency** — whether the issue requires immediate protective attention.
+
+A high score is a prioritization signal, not proof that an account or person is compromised.
+
+See [`docs/risk-model.md`](docs/risk-model.md).
+
+## Initial playbooks
+
+- [`playbooks/self-exposure-assessment.md`](playbooks/self-exposure-assessment.md)
+- [`playbooks/family-digital-safety.md`](playbooks/family-digital-safety.md)
+- [`playbooks/evidence-preservation.md`](playbooks/evidence-preservation.md)
+
+## Privacy and consent
+
+The project follows four non-negotiable rules:
+
+1. Collect the minimum necessary data.
+2. Prefer user-entered, self-owned information.
+3. Do not retain secrets such as passwords, session tokens, recovery codes, or private-message contents.
+4. For young people, minimize identifiers and precise location data and prioritize trusted-adult support and platform safety tools over independent investigation.
+
+See [`docs/consent-and-privacy.md`](docs/consent-and-privacy.md).
+
+## Standards alignment
+
+DSI uses established security and privacy concepts as reference points, including:
+
+- NIST Cybersecurity Framework 2.0;
+- NIST Privacy Framework;
+- strong authentication and phishing-resistant MFA guidance;
+- least privilege, data minimization, recovery planning, and incident documentation practices.
+
+These references guide the methodology; they do not imply endorsement, certification, or affiliation.
+
+## Developers wanted
+
+**Developers, privacy engineers, cybersecurity practitioners, educators, child-safety specialists, UX designers, data-model engineers, and technical writers are invited to help improve DSI professionally.**
+
+High-value contributions include:
+
+- privacy-preserving data models;
+- safer risk-scoring methods;
+- family digital-safety education;
+- accessibility and age-appropriate UX;
+- local-first tooling;
+- test fixtures and schema validation;
+- documentation and translations;
+- evidence-handling guidance that minimizes sensitive data;
+- integrations that preserve consent and do not enable surveillance.
+
+Accepted contributors receive credit through Git history, pull requests, release notes, and acknowledgments where appropriate. **Original authorship, project ownership, and primary maintenance remain attributed to Chris Cruz | h4ckd4d.**
+
+## Project ecosystem
+
+```text
+Internet Exposure Query Atlas
+            ↓
+Internet Exposure Intelligence
+            ↓
+Detection Engineering
+            ↓
+Digital Safety Intelligence
+            ↓
+Protect. Detect. Defend.
+```
+
+## Legacy archive
+
+The original `DigiPass-main.zip` remains in the repository as a historical artifact. It is not part of the DSI v1 architecture or validation pipeline.
+
+## License
+
+Released under the MIT License. See [`LICENSE`](LICENSE).
+
+---
+
+**Chris Cruz | h4ckd4d**  
+Cybersecurity • Red Team • Advanced Cyber Defense & Intelligence  
+OSCP | CEH | CISSP | MITRE ATT&CK® Contributor
+
+**Founder — Project h4ckd4d**  
+Technology for Child Protection • OSINT • Threat Intelligence
+
+*"Protect. Detect. Defend."*
