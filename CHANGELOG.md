@@ -23,12 +23,25 @@
 - Dashboard privacy validator that rejects common network and browser-persistence mechanisms.
 - Privacy threat model and dashboard operating guide.
 - Synthetic prior-assessment fixture for remediation-progress testing.
+- DSI v1.2 guided assessment wizard for self and consensual-family modes.
+- Eight control-focused guided questions without personal-identifier collection.
+- Reusable `web/dsi-core.js` validation, scoring, and assessment-generation engine.
+- `Yes`, `No`, and `Not sure` answer semantics with reduced confidence for uncertain controls.
+- User-initiated local assessment JSON export.
+- Node.js unit tests for generated assessment semantics and safety boundaries.
+- DOM validation for duplicate IDs and inline event handlers.
+- Guided assessment documentation and contributor guidance.
 
 ### Changed
 
 - Repositioned the legacy `digipass` repository as the Digital Safety Intelligence pillar of Project h4ckd4d.
 - Retained `DigiPass-main.zip` as a historical artifact only.
-- Expanded developer priorities to include local-first frontend, accessibility, and privacy-preserving UX engineering.
+- Expanded developer priorities to include local-first frontend, accessibility, privacy-preserving UX, and guided-assessment engineering.
+- Centralized browser scoring and validation around the reusable DSI core engine.
+
+## [1.2.0-rc.1] - 2026-08-23
+
+Release-candidate milestone introducing the guided privacy-safe assessment workflow and reusable browser safety engine.
 
 ## [1.1.0-rc.1] - 2026-08-23
 
