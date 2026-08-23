@@ -1,6 +1,5 @@
 "use strict";
 
-const wizardRoot = document.getElementById("wizard");
 const wizardStart = document.getElementById("wizardStart");
 const wizardModeSelf = document.getElementById("wizardModeSelf");
 const wizardModeFamily = document.getElementById("wizardModeFamily");
@@ -12,6 +11,7 @@ const wizardChoices = document.getElementById("wizardChoices");
 const wizardBack = document.getElementById("wizardBack");
 const wizardNext = document.getElementById("wizardNext");
 const wizardCancel = document.getElementById("wizardCancel");
+const wizardCancelReview = document.getElementById("wizardCancelReview");
 const wizardReview = document.getElementById("wizardReview");
 const wizardReviewList = document.getElementById("wizardReviewList");
 const wizardGenerate = document.getElementById("wizardGenerate");
@@ -62,12 +62,7 @@ function renderStep() {
   wizardPrompt.textContent = question.prompt;
   wizardHelp.textContent = question.help;
   wizardChoices.textContent = "";
-
-  [
-    ["yes", "Yes"],
-    ["no", "No"],
-    ["unsure", "Not sure"],
-  ].forEach(([value, label]) => {
+  [["yes", "Yes"], ["no", "No"], ["unsure", "Not sure"]].forEach(([value, label]) => {
     const choice = document.createElement("label");
     choice.className = "wizard-choice";
     const input = document.createElement("input");
@@ -80,7 +75,6 @@ function renderStep() {
     choice.append(input, text);
     wizardChoices.appendChild(choice);
   });
-
   wizardBack.disabled = wizardIndex === 0;
   wizardNext.textContent = wizardIndex === DSICore.wizardQuestions.length - 1 ? "Review answers" : "Next";
   wizardPrompt.focus();
@@ -88,18 +82,13 @@ function renderStep() {
 
 function nextStep() {
   const answer = selectedAnswer();
-  if (!answer) {
-    setWizardStatus("Choose Yes, No, or Not sure before continuing.", "error");
-    return;
-  }
+  if (!answer) return setWizardStatus("Choose Yes, No, or Not sure before continuing.", "error");
   const question = DSICore.wizardQuestions[wizardIndex];
   wizardAnswers[question.id] = answer;
-
   if (wizardIndex < DSICore.wizardQuestions.length - 1) {
     wizardIndex += 1;
     renderStep();
-    setWizardStatus("Answer recorded in session memory only.", "success");
-    return;
+    return setWizardStatus("Answer recorded in session memory only.", "success");
   }
   renderReview();
 }
@@ -161,6 +150,7 @@ wizardModeFamily.addEventListener("click", () => startWizard("consensual-family"
 wizardBack.addEventListener("click", previousStep);
 wizardNext.addEventListener("click", nextStep);
 wizardCancel.addEventListener("click", resetWizard);
+wizardCancelReview.addEventListener("click", resetWizard);
 wizardGenerate.addEventListener("click", generateAssessment);
 wizardDownload.addEventListener("click", downloadAssessment);
 
