@@ -1,0 +1,55 @@
+{
+  "project": "h4ckd4d Digital Safety Intelligence",
+  "owner": "Chris Cruz | h4ckd4d",
+  "version": "1.0.0-rc.1",
+  "categories": [
+    {
+      "id": "account-security",
+      "label": "Account Security",
+      "examples": ["missing MFA", "weak recovery hygiene", "reused credentials"],
+      "protective_controls": ["strong MFA", "unique passwords", "login alerts", "reviewed recovery methods"]
+    },
+    {
+      "id": "privacy-exposure",
+      "label": "Privacy Exposure",
+      "examples": ["unnecessary public profile data", "excessive profile visibility"],
+      "protective_controls": ["limit profile visibility", "remove unnecessary personal details", "review audience settings"]
+    },
+    {
+      "id": "recovery",
+      "label": "Account Recovery",
+      "examples": ["outdated recovery method", "unknown recovery contact"],
+      "protective_controls": ["review recovery methods", "protect recovery accounts", "store recovery codes securely offline"]
+    },
+    {
+      "id": "location-sharing",
+      "label": "Location Sharing",
+      "examples": ["unnecessary precise-location sharing", "public real-time location"],
+      "protective_controls": ["disable unnecessary precise location", "limit audience", "review app permissions"]
+    },
+    {
+      "id": "unwanted-contact",
+      "label": "Unwanted Contact",
+      "examples": ["persistent unwanted messages", "repeated contact across accounts"],
+      "protective_controls": ["block", "use platform reporting tools", "preserve minimal evidence", "seek trusted support"]
+    },
+    {
+      "id": "device-security",
+      "label": "Device Security",
+      "examples": ["outdated software", "missing screen lock"],
+      "protective_controls": ["update software", "enable screen lock", "review device sessions"]
+    },
+    {
+      "id": "data-sharing",
+      "label": "Data Sharing",
+      "examples": ["excessive app permissions", "unnecessary data disclosure"],
+      "protective_controls": ["review permissions", "remove unused apps", "minimize shared data"]
+    },
+    {
+      "id": "family-safety",
+      "label": "Family Digital Safety",
+      "examples": ["unclear family safety plan", "no trusted escalation path"],
+      "protective_controls": ["agree on trusted contacts", "review platform safety tools", "practice incident-response steps"]
+    }
+  ]
+}
