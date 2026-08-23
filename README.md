@@ -71,9 +71,44 @@ Human Review / Trusted Escalation
 
 See [`docs/architecture.md`](docs/architecture.md).
 
+## Local Privacy & Safety Dashboard
+
+DSI v1.1 adds a browser-based dashboard that runs entirely on the user's device.
+
+```text
+Assessment JSON
+      ↓
+Local browser validation
+      ↓
+Risk scorecards + priorities
+      ↓
+Optional prior-assessment comparison
+      ↓
+Session-only protection checklist
+      ↓
+User-initiated Markdown report export
+```
+
+The dashboard has **no backend, analytics, cookies, CDN dependencies, automatic browser storage, or external runtime requests**.
+
+Start it on loopback only:
+
+```bash
+python scripts/serve_dashboard.py
+```
+
+Then open the local address printed by the command. The default is `127.0.0.1:8765`.
+
+You can also open `web/index.html` directly.
+
+See:
+
+- [`docs/dashboard.md`](docs/dashboard.md)
+- [`docs/privacy-threat-model.md`](docs/privacy-threat-model.md)
+
 ## Offline-first CLI
 
-The initial CLI performs local validation and scoring only. It does **not** query websites or external services.
+The CLI performs local validation and scoring only. It does **not** query websites or external services.
 
 ```bash
 python scripts/dsi.py validate examples/self-assessment.synthetic.json
@@ -125,14 +160,15 @@ These references guide the methodology; they do not imply endorsement, certifica
 
 ## Developers wanted
 
-**Developers, privacy engineers, cybersecurity practitioners, educators, child-safety specialists, UX designers, data-model engineers, and technical writers are invited to help improve DSI professionally.**
+**Developers, privacy engineers, cybersecurity practitioners, educators, child-safety specialists, UX/accessibility designers, frontend engineers, data-model engineers, QA engineers, and technical writers are invited to help improve DSI professionally.**
 
 High-value contributions include:
 
 - privacy-preserving data models;
 - safer risk-scoring methods;
 - family digital-safety education;
-- accessibility and age-appropriate UX;
+- accessible local dashboard UX;
+- accessibility and age-appropriate interaction design;
 - local-first tooling;
 - test fixtures and schema validation;
 - documentation and translations;
@@ -140,6 +176,8 @@ High-value contributions include:
 - integrations that preserve consent and do not enable surveillance.
 
 Accepted contributors receive credit through Git history, pull requests, release notes, and acknowledgments where appropriate. **Original authorship, project ownership, and primary maintenance remain attributed to Chris Cruz | h4ckd4d.**
+
+See [`DEVELOPERS.md`](DEVELOPERS.md).
 
 ## Project ecosystem
 
@@ -157,7 +195,7 @@ Protect. Detect. Defend.
 
 ## Legacy archive
 
-The original `DigiPass-main.zip` remains in the repository as a historical artifact. It is not part of the DSI v1 architecture or validation pipeline.
+The original `DigiPass-main.zip` remains in the repository as a historical artifact. It is not part of the DSI architecture or validation pipeline.
 
 ## License
 
