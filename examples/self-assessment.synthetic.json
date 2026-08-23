@@ -1,0 +1,44 @@
+{
+  "assessment_id": "H4D-DSI-DEMO-0001",
+  "version": "1.0",
+  "consent_confirmed": true,
+  "scope": {
+    "mode": "self",
+    "description": "Synthetic self-assessment for documentation and CI testing."
+  },
+  "findings": [
+    {
+      "id": "DSI-F-0001",
+      "category": "account-security",
+      "title": "Primary account does not use MFA",
+      "exposure": 4,
+      "impact": 5,
+      "control_weakness": 5,
+      "confidence": 5,
+      "urgency": 4,
+      "recommendation": "Enable strong MFA, review active sessions, and confirm recovery methods."
+    },
+    {
+      "id": "DSI-F-0002",
+      "category": "privacy-exposure",
+      "title": "Profile shares more personal detail than necessary",
+      "exposure": 3,
+      "impact": 2,
+      "control_weakness": 3,
+      "confidence": 5,
+      "urgency": 2,
+      "recommendation": "Review audience settings and remove details that are not needed publicly."
+    },
+    {
+      "id": "DSI-F-0003",
+      "category": "family-safety",
+      "title": "No agreed trusted escalation contact",
+      "exposure": 1,
+      "impact": 3,
+      "control_weakness": 4,
+      "confidence": 4,
+      "urgency": 2,
+      "recommendation": "Agree on a trusted contact and review how to use platform safety and reporting tools."
+    }
+  ]
+}
