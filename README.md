@@ -4,7 +4,7 @@
 
 **h4ckd4d Digital Safety Intelligence (DSI)** is a privacy-first defensive framework for helping individuals and families understand their own digital exposure, prioritize account and privacy risks, preserve minimal evidence when something concerning happens, and improve everyday online safety.
 
-The project intentionally avoids third-party profiling, covert surveillance, location tracking, credential collection, and unauthorized scraping. It is designed around **consent, data minimization, local processing, explainable risk scoring, and practical protective actions**.
+The project intentionally avoids third-party profiling, covert surveillance, location tracking, credential collection, and unauthorized scraping. It is designed around **consent, data minimization, local processing, explainable risk scoring, practical protective actions, and human-verified remediation**.
 
 > **Safety boundary:** DSI is for self-assessment, consensual family safety planning, education, and defensive review. It must not be used to locate, monitor, impersonate, harass, profile, or investigate another person without a legitimate and lawful basis.
 
@@ -19,9 +19,11 @@ Strengthen accounts and recovery paths
         ↓
 Recognize suspicious or harmful contact
         ↓
-Preserve only the evidence you actually need
+Apply protective controls
         ↓
-Escalate through trusted, lawful channels when appropriate
+Verify remediation
+        ↓
+Reassess and improve
 ```
 
 ## Core pillars
@@ -34,6 +36,7 @@ Escalate through trusted, lawful channels when appropriate
 | Family Digital Safety | Provide consent-based safety planning for families and young people. |
 | Evidence Preservation | Preserve minimal, relevant records without escalating or investigating independently. |
 | Safety Intelligence | Turn observations into prioritized, explainable protective actions. |
+| Remediation Intelligence | Track controls, verification, and closure without rewriting the original assessment. |
 
 ## What DSI does not do
 
@@ -47,7 +50,8 @@ DSI does not:
 - search for exposed minors;
 - perform doxxing or identity correlation against third parties;
 - automate confrontation or retaliation;
-- treat a public observation as proof of wrongdoing.
+- treat a public observation as proof of wrongdoing;
+- treat a clicked status as proof that risk is eliminated.
 
 ## Architecture
 
@@ -64,12 +68,52 @@ Risk + Confidence Scoring
             ↓
 Protective Recommendations
             ↓
-Optional Minimal Evidence Record
+Remediation Plan
             ↓
-Human Review / Trusted Escalation
+Human Verification
+            ↓
+Reassessment
 ```
 
 See [`docs/architecture.md`](docs/architecture.md).
+
+## DSI v1.3 Remediation Intelligence
+
+DSI v1.3 turns findings into a trackable protective lifecycle while keeping the original assessment immutable.
+
+```text
+Finding
+  ↓
+Recommended Control
+  ↓
+Target Date (optional)
+  ↓
+Open / In Progress
+  ↓
+Ready for Verification
+  ↓
+Human Verification
+  ↓
+Verified Closure
+  ↓
+Reassessment
+```
+
+Each remediation item includes:
+
+- original finding ID and score;
+- normalized control ID;
+- protective control;
+- explicit verification step;
+- workflow status;
+- optional target date;
+- verification timestamp only when a human marks closure as verified.
+
+Supported statuses are `open`, `in-progress`, `ready-for-verification`, `verified`, `deferred`, and `not-applicable`.
+
+The dashboard can export the remediation plan as JSON only through an explicit user action. No remediation state is persisted automatically.
+
+See [`docs/remediation-intelligence.md`](docs/remediation-intelligence.md).
 
 ## DSI v1.2 Guided Assessment
 
@@ -110,6 +154,8 @@ Local browser validation
       ↓
 Risk scorecards + priorities
       ↓
+Remediation Intelligence
+      ↓
 Optional prior-assessment comparison
       ↓
 Session-only protection checklist
@@ -133,6 +179,7 @@ See:
 
 - [`docs/dashboard.md`](docs/dashboard.md)
 - [`docs/guided-assessment.md`](docs/guided-assessment.md)
+- [`docs/remediation-intelligence.md`](docs/remediation-intelligence.md)
 - [`docs/privacy-threat-model.md`](docs/privacy-threat-model.md)
 
 ## Offline-first CLI
@@ -155,7 +202,7 @@ DSI separates:
 - **confidence** — how reliable the input is;
 - **urgency** — whether the issue requires immediate protective attention.
 
-A high score is a prioritization signal, not proof that an account or person is compromised.
+A high score is a prioritization signal, not proof that an account or person is compromised. A remediation completion percentage is a workflow metric, not proof that all risk has disappeared.
 
 See [`docs/risk-model.md`](docs/risk-model.md).
 
@@ -195,8 +242,9 @@ High-value contributions include:
 
 - privacy-preserving data models;
 - safer risk-scoring methods;
+- remediation control mappings and verification language;
 - family digital-safety education;
-- accessible guided-assessment UX;
+- accessible guided-assessment and remediation UX;
 - translations and age-appropriate wording;
 - local-first tooling;
 - test fixtures and schema validation;
