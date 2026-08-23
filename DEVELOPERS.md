@@ -31,7 +31,7 @@ Build tools that process assessment information on the user's device rather than
 
 ### Guided assessment engineering
 
-Help improve the v1.2 wizard while preserving these principles:
+Help improve the guided wizard while preserving these principles:
 
 - questions assess security controls rather than personal traits;
 - no names, usernames, passwords, private messages, or precise location are required;
@@ -41,6 +41,23 @@ Help improve the v1.2 wizard while preserving these principles:
 - question changes require tests and a privacy-impact explanation.
 
 High-value work includes wording review, translations, accessibility research, safer scoring defaults, explainability, test coverage, and structured question-versioning.
+
+### Remediation Intelligence
+
+Help improve the finding-to-closure lifecycle without turning workflow state into false certainty.
+
+Remediation contributions should preserve these rules:
+
+- the original assessment remains immutable;
+- remediation state lives in a separate plan;
+- every control has an explicit verification step;
+- `verified` requires a deliberate human action;
+- status changes do not prove that all risk has disappeared;
+- target dates are optional planning metadata;
+- remediation files must not collect secrets, private messages, precise location, device fingerprints, or unrelated evidence;
+- family remediation remains consent-based and focused on protective controls rather than monitoring another person.
+
+High-value contributions include safer control mappings, verification wording, lifecycle accessibility, deterministic tests, privacy-preserving export formats, and better workflow metrics.
 
 ### Dashboard and accessibility
 
@@ -68,19 +85,20 @@ Develop structured ways to record enough information for a legitimate report wit
 
 ### Testing and validation
 
-Add synthetic fixtures, schema tests, dashboard privacy tests, guided-engine tests, accessibility checks, CI, and documentation checks.
+Add synthetic fixtures, schema tests, dashboard privacy tests, guided-engine tests, remediation lifecycle tests, accessibility checks, CI, and documentation checks.
 
-## Review expectations for dashboard and wizard contributions
+## Review expectations for dashboard, wizard, and remediation contributions
 
-Frontend or guided-assessment changes should explain:
+Changes should explain:
 
 1. what user problem the change solves;
 2. whether any new data is collected or retained;
 3. whether the change introduces a network dependency;
 4. how imported or generated content is safely rendered;
 5. how the feature behaves for family/youth safety use;
-6. whether question wording could cause unnecessary disclosure;
-7. what automated validation covers the change.
+6. whether wording could cause unnecessary disclosure or false certainty;
+7. what automated validation covers the change;
+8. how remediation closure is verified and how reassessment is encouraged.
 
 Changes that add background telemetry, covert monitoring, unnecessary persistence, third-party profiling, or hidden location collection are outside the project's scope.
 
