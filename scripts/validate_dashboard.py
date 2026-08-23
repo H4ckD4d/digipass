@@ -19,6 +19,8 @@ REQUIRED = [
     WEB / "app.js",
     WEB / "dsi-core.js",
     WEB / "wizard.js",
+    WEB / "remediation-core.js",
+    WEB / "remediation.js",
 ]
 
 FORBIDDEN_JS = [
@@ -92,6 +94,9 @@ def main() -> int:
         "consent",
         "Guided safety assessment",
         "No personal identifiers requested",
+        "Remediation Intelligence",
+        "Verified",
+        "session",
     ]
     for token in required_text:
         if token.lower() not in html.lower():
@@ -100,19 +105,26 @@ def main() -> int:
     app_js = scripts.get("app.js", "")
     wizard_js = scripts.get("wizard.js", "")
     core_js = scripts.get("dsi-core.js", "")
-    if "textContent" not in app_js or "textContent" not in wizard_js:
+    remediation_core = scripts.get("remediation-core.js", "")
+    remediation_js = scripts.get("remediation.js", "")
+
+    if "textContent" not in app_js or "textContent" not in wizard_js or "textContent" not in remediation_js:
         errors.append("dashboard rendering must use textContent for imported/generated user-visible content")
     if "wizardQuestions" not in core_js or "buildAssessment" not in core_js:
         errors.append("web/dsi-core.js must expose guided assessment definitions and builder")
     if "consensual-family" not in core_js:
         errors.append("guided assessment engine must preserve explicit consensual-family scope")
+    if "generatePlan" not in remediation_core or "verification_step" not in remediation_core:
+        errors.append("web/remediation-core.js must expose remediation generation and verification semantics")
+    if "dsi:assessment-loaded" not in app_js or "dsi:assessment-loaded" not in remediation_js:
+        errors.append("assessment-to-remediation lifecycle event is missing")
 
     if errors:
         print("Dashboard validation failed:")
         print("\n".join(f"- {error}" for error in errors))
         return 1
 
-    print("Dashboard validation passed: local-only, no automatic persistence, unique DOM ids, no inline handlers, required safety text present.")
+    print("Dashboard validation passed: local-only, no automatic persistence, unique DOM ids, no inline handlers, guided and remediation lifecycle safety text present.")
     return 0
 
 
