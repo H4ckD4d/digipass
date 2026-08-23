@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project-h4ckd4d.local/schemas/dsi-evidence.schema.json",
+  "title": "h4ckd4d Digital Safety Intelligence Minimal Evidence Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["evidence_id", "recorded_at", "service", "summary", "user_action"],
+  "properties": {
+    "evidence_id": {
+      "type": "string",
+      "pattern": "^DSI-E-[0-9]{4}$"
+    },
+    "recorded_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "service": {
+      "type": "string",
+      "minLength": 2,
+      "maxLength": 100
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 500
+    },
+    "reference": {
+      "type": "string",
+      "maxLength": 250
+    },
+    "user_action": {
+      "type": "string",
+      "minLength": 3,
+      "maxLength": 300
+    },
+    "contains_sensitive_content": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

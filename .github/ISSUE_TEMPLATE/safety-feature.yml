@@ -1,0 +1,48 @@
+name: Digital safety feature proposal
+description: Propose a privacy-preserving defensive safety feature.
+title: "[Safety] "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve **h4ckd4d Digital Safety Intelligence**.
+
+        Project owner and primary maintainer: **Chris Cruz | h4ckd4d**.
+
+        Proposals must preserve consent, data minimization, and defensive use.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Safety problem
+      description: What user safety or privacy problem should this feature address?
+    validations:
+      required: true
+
+  - type: textarea
+    id: data
+    attributes:
+      label: Data required
+      description: What minimum data would the feature need, and why?
+    validations:
+      required: true
+
+  - type: textarea
+    id: design
+    attributes:
+      label: Proposed privacy-preserving design
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: boundaries
+    attributes:
+      label: Safety boundaries
+      options:
+        - label: The proposal does not enable third-party profiling, stalking, location tracking, impersonation, or covert monitoring.
+          required: true
+        - label: The proposal does not require passwords, tokens, recovery codes, private keys, or private-message contents.
+          required: true
+        - label: Synthetic or sanitized data can be used for development and testing.
+          required: true
