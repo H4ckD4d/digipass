@@ -1,0 +1,48 @@
+name: Digital Safety Intelligence Validation
+
+on:
+  push:
+    branches: [main, digital-safety-intelligence-v1]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  repository-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate repository structure
+        run: python scripts/validate_project.py
+
+      - name: Validate synthetic assessment
+        run: python scripts/dsi.py validate examples/self-assessment.synthetic.json
+
+      - name: Score synthetic assessment
+        run: python scripts/dsi.py score examples/self-assessment.synthetic.json
+
+      - name: Generate synthetic report
+        run: python scripts/dsi.py report examples/self-assessment.synthetic.json --output /tmp/dsi-report.md
+
+  documentation-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Lint Markdown
+        run: npx --yes markdownlint-cli2 "**/*.md" "#node_modules"
