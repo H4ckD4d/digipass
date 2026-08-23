@@ -31,13 +31,27 @@
 - Node.js unit tests for generated assessment semantics and safety boundaries.
 - DOM validation for duplicate IDs and inline event handlers.
 - Guided assessment documentation and contributor guidance.
+- DSI v1.3 Remediation Intelligence lifecycle.
+- Separate remediation-plan JSON Schema and synthetic fixture.
+- Deterministic category-to-control and verification-step mapping.
+- Session-only remediation status and optional target-date tracking.
+- Human-verified closure timestamps and explicit reassessment guidance.
+- Remediation progress and remaining-prioritization workflow metrics.
+- User-initiated remediation-plan JSON export.
+- Dedicated remediation engine unit tests and expanded privacy validation.
+- Remediation Intelligence documentation and professional contributor guidance.
 
 ### Changed
 
 - Repositioned the legacy `digipass` repository as the Digital Safety Intelligence pillar of Project h4ckd4d.
 - Retained `DigiPass-main.zip` as a historical artifact only.
-- Expanded developer priorities to include local-first frontend, accessibility, privacy-preserving UX, and guided-assessment engineering.
+- Expanded developer priorities to include local-first frontend, accessibility, privacy-preserving UX, guided-assessment engineering, and remediation lifecycle design.
 - Centralized browser scoring and validation around the reusable DSI core engine.
+- Kept assessments immutable while remediation state is tracked in a separate plan.
+
+## [1.3.0-rc.1] - 2026-08-23
+
+Release-candidate milestone introducing Remediation Intelligence, human verification, local lifecycle tracking, and privacy-preserving remediation export.
 
 ## [1.2.0-rc.1] - 2026-08-23
 
