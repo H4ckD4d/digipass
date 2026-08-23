@@ -54,7 +54,7 @@ DSI does not:
 ```text
 Consent / Self-Declared Scope
             ↓
-Local Assessment Input
+Guided or Imported Assessment
             ↓
 Data Minimization
             ↓
@@ -71,12 +71,40 @@ Human Review / Trusted Escalation
 
 See [`docs/architecture.md`](docs/architecture.md).
 
-## Local Privacy & Safety Dashboard
+## DSI v1.2 Guided Assessment
 
-DSI v1.1 adds a browser-based dashboard that runs entirely on the user's device.
+DSI v1.2 lets non-technical users build a valid assessment directly in the local dashboard without editing JSON.
 
 ```text
-Assessment JSON
+Choose self or consensual-family mode
+        ↓
+Answer eight control-focused questions
+        ↓
+Review answers
+        ↓
+Generate assessment locally
+        ↓
+Validate + score
+        ↓
+Load into dashboard
+        ↓
+Optional local JSON / Markdown export
+```
+
+The wizard asks about protective controls only: MFA, recovery, privacy audiences, device security, location-sharing review, connected apps, blocking/reporting knowledge, and trusted support planning.
+
+It does **not** request names, usernames, email addresses, passwords, recovery codes, private messages, coordinates, or precise live location.
+
+Answers support `Yes`, `No`, and `Not sure`. Uncertainty generates a review finding with reduced confidence rather than pretending a weakness is confirmed.
+
+See [`docs/guided-assessment.md`](docs/guided-assessment.md).
+
+## Local Privacy & Safety Dashboard
+
+The dashboard runs entirely on the user's device.
+
+```text
+Guided or imported assessment
       ↓
 Local browser validation
       ↓
@@ -86,7 +114,7 @@ Optional prior-assessment comparison
       ↓
 Session-only protection checklist
       ↓
-User-initiated Markdown report export
+User-initiated JSON / Markdown export
 ```
 
 The dashboard has **no backend, analytics, cookies, CDN dependencies, automatic browser storage, or external runtime requests**.
@@ -104,6 +132,7 @@ You can also open `web/index.html` directly.
 See:
 
 - [`docs/dashboard.md`](docs/dashboard.md)
+- [`docs/guided-assessment.md`](docs/guided-assessment.md)
 - [`docs/privacy-threat-model.md`](docs/privacy-threat-model.md)
 
 ## Offline-first CLI
@@ -167,11 +196,10 @@ High-value contributions include:
 - privacy-preserving data models;
 - safer risk-scoring methods;
 - family digital-safety education;
-- accessible local dashboard UX;
-- accessibility and age-appropriate interaction design;
+- accessible guided-assessment UX;
+- translations and age-appropriate wording;
 - local-first tooling;
 - test fixtures and schema validation;
-- documentation and translations;
 - evidence-handling guidance that minimizes sensitive data;
 - integrations that preserve consent and do not enable surveillance.
 
