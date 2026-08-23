@@ -2,7 +2,7 @@ name: Digital Safety Intelligence Validation
 
 on:
   push:
-    branches: [main, digital-safety-intelligence-v1, digital-safety-intelligence-v1.1]
+    branches: [main, digital-safety-intelligence-v1, digital-safety-intelligence-v1.1, digital-safety-intelligence-v1.2]
   pull_request:
     branches: [main]
 
@@ -21,11 +21,19 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
       - name: Validate repository structure
         run: python scripts/validate_project.py
 
       - name: Validate dashboard privacy guarantees
         run: python scripts/validate_dashboard.py
+
+      - name: Test guided assessment engine
+        run: node scripts/test_web_core.js
 
       - name: Validate synthetic assessment
         run: python scripts/dsi.py validate examples/self-assessment.synthetic.json
