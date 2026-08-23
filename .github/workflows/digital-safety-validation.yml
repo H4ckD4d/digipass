@@ -2,7 +2,7 @@ name: Digital Safety Intelligence Validation
 
 on:
   push:
-    branches: [main, digital-safety-intelligence-v1, digital-safety-intelligence-v1.1, digital-safety-intelligence-v1.2]
+    branches: [main, digital-safety-intelligence-v1, digital-safety-intelligence-v1.1, digital-safety-intelligence-v1.2, digital-safety-intelligence-v1.3]
   pull_request:
     branches: [main]
 
@@ -34,6 +34,9 @@ jobs:
 
       - name: Test guided assessment engine
         run: node scripts/test_web_core.js
+
+      - name: Test remediation intelligence engine
+        run: node scripts/test_remediation_core.js
 
       - name: Validate synthetic assessment
         run: python scripts/dsi.py validate examples/self-assessment.synthetic.json

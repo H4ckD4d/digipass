@@ -17,7 +17,7 @@
     <section class="notice" aria-labelledby="privacy-title"><div><p class="eyebrow">Privacy boundary</p><h2 id="privacy-title">Your assessment stays in this browser session.</h2></div><p>No account, backend, analytics, cookies, external requests, automatic storage, or third-party profiling. Import or generate only information you own or have clear consent to review.</p></section>
 
     <section id="wizard" class="panel" aria-labelledby="wizard-title">
-      <div class="section-heading"><div><p class="eyebrow">DSI v1.2</p><h2 id="wizard-title">Guided safety assessment</h2></div><span class="local-label">No personal identifiers requested</span></div>
+      <div class="section-heading"><div><p class="eyebrow">DSI v1.2+</p><h2 id="wizard-title">Guided safety assessment</h2></div><span class="local-label">No personal identifiers requested</span></div>
       <p class="muted">Answer control-focused questions. DSI does not ask for names, usernames, passwords, private messages, or precise location.</p>
       <div id="wizardStart" class="wizard-start">
         <button id="wizardModeSelf" class="button" type="button">Start self-assessment</button>
@@ -52,6 +52,17 @@
       <article class="metric-card"><span class="metric-label">Change</span><strong id="riskDelta">—</strong><span class="metric-help">Prior vs. current average risk</span></article>
     </section>
 
+    <section id="remediationPanel" class="panel" aria-labelledby="remediation-title">
+      <div class="section-heading">
+        <div><p class="eyebrow">DSI v1.3</p><h2 id="remediation-title">Remediation Intelligence</h2></div>
+        <div class="button-group"><button id="remediationExport" class="button" type="button" disabled>Export remediation plan</button><button id="remediationReset" class="button secondary" type="button">Clear remediation session</button></div>
+      </div>
+      <p class="muted">Track protective actions separately from the original assessment. A finding is not closed automatically; use <strong>Verified</strong> only after completing the stated verification step.</p>
+      <div id="remediationSummary" class="remediation-summary">Load or generate an assessment to create a remediation plan.</div>
+      <div id="remediationItems" class="empty-state">No remediation plan loaded.</div>
+      <div id="remediationStatus" class="status" role="status" aria-live="polite">Remediation data exists only in this browser session unless you explicitly export it.</div>
+    </section>
+
     <section class="dashboard-grid">
       <article class="panel" aria-labelledby="findings-title"><div class="section-heading"><div><p class="eyebrow">Priorities</p><h2 id="findings-title">Protective action queue</h2></div><button id="exportButton" class="button" type="button" disabled>Export Markdown report</button></div><div id="findingsTable" class="empty-state">Load or generate an assessment to view prioritized findings.</div></article>
       <aside class="panel" aria-labelledby="checklist-title"><p class="eyebrow">Safety controls</p><h2 id="checklist-title">Protection checklist</h2><p class="muted">This checklist is session-only and is never saved automatically.</p><div id="checklist" class="checklist"><label><input type="checkbox"> Strong MFA enabled on important accounts</label><label><input type="checkbox"> Recovery email/phone reviewed and current</label><label><input type="checkbox"> Privacy audiences reviewed</label><label><input type="checkbox"> Location-sharing settings reviewed</label><label><input type="checkbox"> Device lock and updates enabled</label><label><input type="checkbox"> Trusted support/reporting plan agreed</label></div><div class="progress-track" aria-label="Checklist completion"><div id="progressBar" class="progress-bar"></div></div><p id="progressText" class="progress-text">0% complete</p></aside>
@@ -63,6 +74,6 @@
     </section>
   </main>
   <footer><div class="signature"><strong>Chris Cruz | h4ckd4d</strong><span>Cybersecurity • Red Team • Advanced Cyber Defense &amp; Intelligence</span><span>OSCP | CEH | CISSP | MITRE ATT&amp;CK® Contributor</span><span class="founder">Founder — Project h4ckd4d</span><span>Technology for Child Protection • OSINT • Threat Intelligence</span><em>“Protect. Detect. Defend.”</em></div><p>Developers, privacy engineers, educators, UX/accessibility specialists, QA engineers, and digital-safety practitioners are invited to contribute through professional pull requests and review.</p></footer>
-  <script src="dsi-core.js"></script><script src="app.js"></script><script src="wizard.js"></script>
+  <script src="dsi-core.js"></script><script src="app.js"></script><script src="wizard.js"></script><script src="remediation-core.js"></script><script src="remediation.js"></script>
 </body>
 </html>

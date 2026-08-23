@@ -112,10 +112,16 @@ function loadAssessment(data, role = "Current") {
     setStatus(`${role} assessment rejected: ${errors.join(" ")}`, "error");
     return false;
   }
-  if (role === "Prior") priorAssessment = structuredClone(data);
-  else currentAssessment = structuredClone(data);
+  if (role === "Prior") {
+    priorAssessment = structuredClone(data);
+  } else {
+    currentAssessment = structuredClone(data);
+  }
   setStatus(`${role} assessment loaded and validated locally.`, "success");
   renderDashboard();
+  if (role !== "Prior") {
+    window.dispatchEvent(new CustomEvent("dsi:assessment-loaded", { detail: structuredClone(currentAssessment) }));
+  }
   return true;
 }
 
