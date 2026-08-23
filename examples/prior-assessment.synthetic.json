@@ -1,0 +1,44 @@
+{
+  "assessment_id": "H4D-DSI-DEMO-PRIOR-0001",
+  "version": "1.0",
+  "consent_confirmed": true,
+  "scope": {
+    "mode": "self",
+    "description": "Synthetic prior assessment for before/after dashboard testing."
+  },
+  "findings": [
+    {
+      "id": "DSI-F-0001",
+      "category": "account-security",
+      "title": "Primary account does not use MFA",
+      "exposure": 5,
+      "impact": 5,
+      "control_weakness": 5,
+      "confidence": 5,
+      "urgency": 5,
+      "recommendation": "Enable strong MFA, review active sessions, and confirm recovery methods."
+    },
+    {
+      "id": "DSI-F-0002",
+      "category": "privacy-exposure",
+      "title": "Profile shares more personal detail than necessary",
+      "exposure": 4,
+      "impact": 3,
+      "control_weakness": 4,
+      "confidence": 5,
+      "urgency": 3,
+      "recommendation": "Review audience settings and remove details that are not needed publicly."
+    },
+    {
+      "id": "DSI-F-0003",
+      "category": "family-safety",
+      "title": "No agreed trusted escalation contact",
+      "exposure": 2,
+      "impact": 4,
+      "control_weakness": 5,
+      "confidence": 4,
+      "urgency": 3,
+      "recommendation": "Agree on a trusted contact and review how to use platform safety and reporting tools."
+    }
+  ]
+}
