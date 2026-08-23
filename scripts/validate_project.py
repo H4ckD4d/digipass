@@ -23,7 +23,15 @@ REQUIRED_FILES = [
     "schemas/evidence.schema.json",
     "catalog/risk-taxonomy.json",
     "examples/self-assessment.synthetic.json",
+    "examples/prior-assessment.synthetic.json",
     "scripts/dsi.py",
+    "scripts/serve_dashboard.py",
+    "scripts/validate_dashboard.py",
+    "web/index.html",
+    "web/styles.css",
+    "web/app.js",
+    "docs/dashboard.md",
+    "docs/privacy-threat-model.md",
 ]
 
 FORBIDDEN_KEYS = {
@@ -55,6 +63,20 @@ def walk_keys(value):
             yield from walk_keys(item)
 
 
+def check_assessment(name: str, assessment, errors: list[str]) -> None:
+    if not isinstance(assessment, dict):
+        errors.append(f"{name} must contain a JSON object")
+        return
+    if assessment.get("consent_confirmed") is not True:
+        errors.append(f"{name} must set consent_confirmed=true")
+    mode = assessment.get("scope", {}).get("mode")
+    if mode not in {"self", "consensual-family"}:
+        errors.append(f"{name} uses invalid scope mode")
+    found_forbidden = sorted(set(walk_keys(assessment)) & FORBIDDEN_KEYS)
+    if found_forbidden:
+        errors.append(f"{name} contains forbidden sensitive field(s): {found_forbidden}")
+
+
 def main() -> int:
     errors: list[str] = []
 
@@ -67,6 +89,7 @@ def main() -> int:
         ROOT / "schemas" / "evidence.schema.json",
         ROOT / "catalog" / "risk-taxonomy.json",
         ROOT / "examples" / "self-assessment.synthetic.json",
+        ROOT / "examples" / "prior-assessment.synthetic.json",
     ]
 
     loaded = {}
@@ -76,16 +99,8 @@ def main() -> int:
         except (OSError, json.JSONDecodeError) as exc:
             errors.append(f"invalid JSON {path.relative_to(ROOT)}: {exc}")
 
-    example = loaded.get("self-assessment.synthetic.json")
-    if isinstance(example, dict):
-        if example.get("consent_confirmed") is not True:
-            errors.append("synthetic assessment must set consent_confirmed=true")
-        mode = example.get("scope", {}).get("mode")
-        if mode not in {"self", "consensual-family"}:
-            errors.append("synthetic assessment uses invalid scope mode")
-        found_forbidden = sorted(set(walk_keys(example)) & FORBIDDEN_KEYS)
-        if found_forbidden:
-            errors.append(f"synthetic assessment contains forbidden sensitive field(s): {found_forbidden}")
+    check_assessment("self-assessment.synthetic.json", loaded.get("self-assessment.synthetic.json"), errors)
+    check_assessment("prior-assessment.synthetic.json", loaded.get("prior-assessment.synthetic.json"), errors)
 
     taxonomy = loaded.get("risk-taxonomy.json")
     if isinstance(taxonomy, dict):
