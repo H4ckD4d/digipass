@@ -9,6 +9,7 @@ h4ckd4d Digital Safety Intelligence is intended to become an open, professionall
 We welcome contributions from:
 
 - software developers;
+- frontend and local-first application engineers;
 - privacy engineers;
 - cybersecurity and identity-security practitioners;
 - educators and digital-literacy specialists;
@@ -28,13 +29,25 @@ Help reduce data collection, retention, and exposure while keeping assessments u
 
 Build tools that process assessment information on the user's device rather than sending sensitive data to third parties.
 
+### Dashboard and accessibility
+
+Improve the local dashboard while preserving the following guarantees:
+
+- no analytics;
+- no advertising SDKs;
+- no unnecessary network requests;
+- no hidden persistence;
+- imported assessment content rendered safely;
+- keyboard and screen-reader-friendly interaction;
+- clear language that distinguishes prioritization from proof of compromise.
+
 ### Explainable risk models
 
 Improve scoring so users understand why an item is prioritized and what action can reduce the score.
 
 ### Family and youth safety UX
 
-Design guidance that is age-appropriate, non-alarming, accessible, and oriented toward trusted support rather than independent investigation.
+Design guidance that is age-appropriate, non-alarming, accessible, and oriented toward trusted support rather than independent investigation or covert monitoring.
 
 ### Evidence minimization
 
@@ -42,7 +55,20 @@ Develop structured ways to record enough information for a legitimate report wit
 
 ### Testing and validation
 
-Add synthetic fixtures, schema tests, CI, accessibility tests, and documentation checks.
+Add synthetic fixtures, schema tests, dashboard privacy tests, accessibility checks, CI, and documentation checks.
+
+## Review expectations for dashboard contributions
+
+Frontend changes should explain:
+
+1. what user problem the change solves;
+2. whether any new data is collected or retained;
+3. whether the change introduces a network dependency;
+4. how imported content is safely rendered;
+5. how the feature behaves for family/youth safety use;
+6. what automated validation covers the change.
+
+Changes that add background telemetry, covert monitoring, unnecessary persistence, third-party profiling, or hidden location collection are outside the project's scope.
 
 ## Community standard
 
