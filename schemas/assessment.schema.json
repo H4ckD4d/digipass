@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://project-h4ckd4d.local/schemas/dsi-assessment.schema.json",
+  "title": "h4ckd4d Digital Safety Intelligence Assessment",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["assessment_id", "version", "consent_confirmed", "scope", "findings"],
+  "properties": {
+    "assessment_id": {
+      "type": "string",
+      "pattern": "^H4D-DSI-[A-Z0-9-]{4,64}$"
+    },
+    "version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "consent_confirmed": {
+      "type": "boolean",
+      "const": true
+    },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "description"],
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": ["self", "consensual-family"]
+        },
+        "description": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 240
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "category",
+          "title",
+          "exposure",
+          "impact",
+          "control_weakness",
+          "confidence",
+          "urgency",
+          "recommendation"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^DSI-F-[0-9]{4}$"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "account-security",
+              "privacy-exposure",
+              "recovery",
+              "location-sharing",
+              "unwanted-contact",
+              "device-security",
+              "data-sharing",
+              "family-safety"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 160
+          },
+          "exposure": {"type": "integer", "minimum": 0, "maximum": 5},
+          "impact": {"type": "integer", "minimum": 0, "maximum": 5},
+          "control_weakness": {"type": "integer", "minimum": 0, "maximum": 5},
+          "confidence": {"type": "integer", "minimum": 0, "maximum": 5},
+          "urgency": {"type": "integer", "minimum": 0, "maximum": 5},
+          "recommendation": {
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 500
+          }
+        }
+      }
+    }
+  }
+}
