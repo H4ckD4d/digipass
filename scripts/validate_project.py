@@ -21,20 +21,26 @@ REQUIRED_FILES = [
     "LICENSE",
     "schemas/assessment.schema.json",
     "schemas/evidence.schema.json",
+    "schemas/remediation.schema.json",
     "catalog/risk-taxonomy.json",
     "examples/self-assessment.synthetic.json",
     "examples/prior-assessment.synthetic.json",
+    "examples/remediation-plan.synthetic.json",
     "scripts/dsi.py",
     "scripts/serve_dashboard.py",
     "scripts/validate_dashboard.py",
     "scripts/test_web_core.js",
+    "scripts/test_remediation_core.js",
     "web/index.html",
     "web/styles.css",
     "web/app.js",
     "web/dsi-core.js",
     "web/wizard.js",
+    "web/remediation-core.js",
+    "web/remediation.js",
     "docs/dashboard.md",
     "docs/guided-assessment.md",
+    "docs/remediation-intelligence.md",
     "docs/privacy-threat-model.md",
 ]
 
@@ -69,6 +75,32 @@ def check_assessment(name: str, assessment, errors: list[str]) -> None:
         errors.append(f"{name} contains forbidden sensitive field(s): {found_forbidden}")
 
 
+def check_remediation(plan, errors: list[str]) -> None:
+    if not isinstance(plan, dict):
+        errors.append("remediation-plan.synthetic.json must contain a JSON object")
+        return
+    if plan.get("version") != "1.0":
+        errors.append("remediation plan version must be 1.0")
+    if plan.get("scope_mode") not in {"self", "consensual-family"}:
+        errors.append("remediation plan uses invalid scope_mode")
+    items = plan.get("items")
+    if not isinstance(items, list):
+        errors.append("remediation plan items must be an array")
+        return
+    valid_statuses = {"open", "in-progress", "ready-for-verification", "verified", "deferred", "not-applicable"}
+    for item in items:
+        if not isinstance(item, dict):
+            errors.append("remediation plan contains a non-object item")
+            continue
+        if item.get("status") not in valid_statuses:
+            errors.append(f"remediation plan contains invalid status: {item.get('status')!r}")
+        if item.get("status") == "verified" and not item.get("verified_at"):
+            errors.append("verified remediation item must include verified_at")
+    found_forbidden = sorted(set(walk_keys(plan)) & FORBIDDEN_KEYS)
+    if found_forbidden:
+        errors.append(f"remediation plan contains forbidden sensitive field(s): {found_forbidden}")
+
+
 def main() -> int:
     errors: list[str] = []
     for relative in REQUIRED_FILES:
@@ -78,9 +110,11 @@ def main() -> int:
     json_paths = [
         ROOT / "schemas" / "assessment.schema.json",
         ROOT / "schemas" / "evidence.schema.json",
+        ROOT / "schemas" / "remediation.schema.json",
         ROOT / "catalog" / "risk-taxonomy.json",
         ROOT / "examples" / "self-assessment.synthetic.json",
         ROOT / "examples" / "prior-assessment.synthetic.json",
+        ROOT / "examples" / "remediation-plan.synthetic.json",
     ]
 
     loaded = {}
@@ -92,6 +126,7 @@ def main() -> int:
 
     check_assessment("self-assessment.synthetic.json", loaded.get("self-assessment.synthetic.json"), errors)
     check_assessment("prior-assessment.synthetic.json", loaded.get("prior-assessment.synthetic.json"), errors)
+    check_remediation(loaded.get("remediation-plan.synthetic.json"), errors)
 
     taxonomy = loaded.get("risk-taxonomy.json")
     if isinstance(taxonomy, dict):
