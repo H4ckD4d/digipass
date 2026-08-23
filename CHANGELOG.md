@@ -15,11 +15,24 @@
 - Synthetic assessment fixture.
 - Project validation and GitHub Actions CI.
 - Professional developer and contributor onboarding.
+- Local Privacy & Safety Dashboard under `web/`.
+- Session-only current/prior assessment comparison.
+- Session-only protection checklist for MFA, recovery, privacy, location-sharing, device security, and trusted support planning.
+- Client-side Markdown report export.
+- Loopback-only local dashboard server.
+- Dashboard privacy validator that rejects common network and browser-persistence mechanisms.
+- Privacy threat model and dashboard operating guide.
+- Synthetic prior-assessment fixture for remediation-progress testing.
 
 ### Changed
 
 - Repositioned the legacy `digipass` repository as the Digital Safety Intelligence pillar of Project h4ckd4d.
 - Retained `DigiPass-main.zip` as a historical artifact only.
+- Expanded developer priorities to include local-first frontend, accessibility, and privacy-preserving UX engineering.
+
+## [1.1.0-rc.1] - 2026-08-23
+
+Release-candidate milestone introducing the local privacy and safety dashboard.
 
 ## [1.0.0-rc.1] - 2026-08-23
 
