@@ -6,6 +6,11 @@ on:
     paths:
       - "incubator/crisistrust/**"
       - ".github/workflows/crisistrust-incubator-validation.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "incubator/crisistrust/**"
+      - ".github/workflows/crisistrust-incubator-validation.yml"
   workflow_dispatch:
 
 permissions:
