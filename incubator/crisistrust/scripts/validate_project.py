@@ -19,6 +19,8 @@ REQUIRED = [
     "CONTRIBUTING.md",
     "DEVELOPERS.md",
     "SECURITY.md",
+    "CHANGELOG.md",
+    "LICENSE",
     "docs/architecture.md",
     "docs/trust-model.md",
     "docs/protocol.md",
@@ -36,6 +38,7 @@ REQUIRED = [
     "web/core.js",
     "web/app.js",
     "scripts/test_core.js",
+    "scripts/serve_local.py",
 ]
 
 FORBIDDEN_WEB_TOKENS = [
@@ -139,6 +142,10 @@ def main() -> int:
 
     if re.search(r"\son[a-zA-Z]+\s*=", html):
         errors.append("web/index.html contains inline event handlers")
+
+    server_text = (ROOT / "scripts" / "serve_local.py").read_text(encoding="utf-8") if (ROOT / "scripts" / "serve_local.py").is_file() else ""
+    if 'HOST = "127.0.0.1"' not in server_text:
+        errors.append("local reference server must bind to 127.0.0.1 by default")
 
     if errors:
         print("CrisisTrust validation failed:\n")
