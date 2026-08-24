@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://crisistrust.example/schemas/checkin.schema.json",
+  "title": "CrisisTrust Check-in",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["record_type", "protocol_version", "checkin_id", "alias", "status", "updated_at"],
+  "properties": {
+    "record_type": {"const": "checkin"},
+    "protocol_version": {"const": "0.1"},
+    "checkin_id": {"type": "string", "minLength": 3},
+    "alias": {"type": "string", "minLength": 1, "maxLength": 80},
+    "status": {"enum": ["safe", "need-assistance", "unknown"]},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "note": {"type": "string", "maxLength": 240}
+  }
+}
