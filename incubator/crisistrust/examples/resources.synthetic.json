@@ -1,0 +1,30 @@
+[
+  {
+    "record_type": "community-resource",
+    "protocol_version": "0.1",
+    "resource_id": "CT-RESOURCE-DEMO-001",
+    "resource_type": "cooling-center",
+    "name": "Example Community Cooling Center",
+    "area_description": "Example District — documentation fixture only",
+    "address": "100 Example Avenue, Example City",
+    "source": "Example Emergency Authority",
+    "verification_status": "verified",
+    "last_verified_at": "2026-08-23T18:05:00Z",
+    "availability": "available",
+    "availability_note": "Synthetic availability for interface testing only.",
+    "accessibility_note": "Synthetic accessibility note for interface testing only."
+  },
+  {
+    "record_type": "community-resource",
+    "protocol_version": "0.1",
+    "resource_id": "CT-RESOURCE-DEMO-002",
+    "resource_type": "information-point",
+    "name": "Example Official Information Point",
+    "area_description": "Example District — documentation fixture only",
+    "source": "Example Emergency Authority",
+    "verification_status": "stale",
+    "last_verified_at": "2026-08-23T12:00:00Z",
+    "availability": "unknown",
+    "availability_note": "Synthetic stale record used to test freshness warnings."
+  }
+]
