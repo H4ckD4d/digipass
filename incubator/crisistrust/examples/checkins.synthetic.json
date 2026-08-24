@@ -1,0 +1,27 @@
+[
+  {
+    "record_type": "checkin",
+    "protocol_version": "0.1",
+    "checkin_id": "CT-CHECKIN-DEMO-001",
+    "alias": "Trusted person A",
+    "status": "safe",
+    "updated_at": "2026-08-23T18:10:00Z"
+  },
+  {
+    "record_type": "checkin",
+    "protocol_version": "0.1",
+    "checkin_id": "CT-CHECKIN-DEMO-002",
+    "alias": "Trusted person B",
+    "status": "unknown",
+    "updated_at": "2026-08-23T18:11:00Z"
+  },
+  {
+    "record_type": "checkin",
+    "protocol_version": "0.1",
+    "checkin_id": "CT-CHECKIN-DEMO-003",
+    "alias": "Trusted person C",
+    "status": "need-assistance",
+    "updated_at": "2026-08-23T18:12:00Z",
+    "note": "Synthetic status used only for interface testing."
+  }
+]
