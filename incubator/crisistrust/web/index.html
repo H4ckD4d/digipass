@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>CrisisTrust — Open Human Safety & Verification Network</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to CrisisTrust dashboard</a>
+
+  <header class="site-header">
+    <div>
+      <p class="eyebrow">PROJECT h4ckd4d · CRISISTRUST v0.1</p>
+      <h1>CrisisTrust</h1>
+      <p class="subtitle">Open Human Safety &amp; Verification Network</p>
+    </div>
+    <div class="local-badge"><span class="status-dot" aria-hidden="true"></span>Local session only</div>
+  </header>
+
+  <main id="main">
+    <section class="notice" aria-labelledby="boundary-title">
+      <div>
+        <p class="eyebrow">Safety boundary</p>
+        <h2 id="boundary-title">Provenance is not a truth oracle.</h2>
+      </div>
+      <p>CrisisTrust shows where an alert came from, whether integrity evidence was checked, what the source instructed, and whether the alert appears current. It does not replace emergency authorities or emergency services.</p>
+    </section>
+
+    <section class="panel" aria-labelledby="load-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">AlertTrust</p>
+          <h2 id="load-title">Load a synthetic or normalized alert</h2>
+        </div>
+        <button id="demoButton" class="button secondary" type="button">Load synthetic demo</button>
+      </div>
+      <label class="upload-card" for="alertFile">
+        <strong>Import alert-envelope JSON</strong>
+        <span>Processed only in this browser session. No upload occurs.</span>
+        <input id="alertFile" type="file" accept="application/json,.json">
+      </label>
+      <div id="loadStatus" class="status" role="status" aria-live="polite">No alert loaded.</div>
+    </section>
+
+    <section class="metrics" aria-label="Trust and freshness overview">
+      <article class="metric-card"><span>Source</span><strong id="sourceMetric">—</strong><small id="sourceMetricHelp">No alert</small></article>
+      <article class="metric-card"><span>Integrity</span><strong id="integrityMetric">—</strong><small id="integrityMetricHelp">No alert</small></article>
+      <article class="metric-card"><span>Freshness</span><strong id="freshnessMetric">—</strong><small>Current / expired / unknown</small></article>
+      <article class="metric-card"><span>Trusted circle</span><strong id="circleMetric">—</strong><small>Session-only check-ins</small></article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel" aria-labelledby="card-title">
+        <p class="eyebrow">Action Card</p>
+        <h2 id="card-title">Authoritative instruction</h2>
+        <div id="actionCard" class="empty-state">Load an alert to generate an Action Card.</div>
+      </article>
+
+      <aside class="panel" aria-labelledby="trust-title">
+        <p class="eyebrow">Trust context</p>
+        <h2 id="trust-title">What we know</h2>
+        <dl id="trustDetails" class="trust-list">
+          <div><dt>Source provenance</dt><dd>—</dd></div>
+          <div><dt>Message integrity</dt><dd>—</dd></div>
+          <div><dt>Certainty</dt><dd>—</dd></div>
+          <div><dt>Area</dt><dd>—</dd></div>
+        </dl>
+      </aside>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="panel" aria-labelledby="circle-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Trusted Circle</p>
+            <h2 id="circle-title">Minimal check-in board</h2>
+          </div>
+          <button id="resetCircle" class="text-button" type="button">Reset session</button>
+        </div>
+        <p class="muted">Aliases and statuses exist only in the active page. CrisisTrust does not require precise personal location.</p>
+        <div id="circleBoard" class="circle-board"></div>
+      </article>
+
+      <article class="panel" aria-labelledby="resources-title">
+        <p class="eyebrow">Community resources</p>
+        <h2 id="resources-title">Freshness-aware resources</h2>
+        <p class="muted">A legitimate resource can still become stale or unavailable. Verification state stays visible.</p>
+        <div id="resourceList" class="resource-list"></div>
+      </article>
+    </section>
+
+    <section class="panel principles" aria-labelledby="principles-title">
+      <p class="eyebrow">CrisisTrust principles</p>
+      <h2 id="principles-title">Trust must become safe action.</h2>
+      <div class="principle-grid">
+        <div><strong>Source-aware</strong><span>Show provenance and integrity separately.</span></div>
+        <div><strong>Official-first</strong><span>Preserve source instructions instead of inventing new ones.</span></div>
+        <div><strong>Privacy-first</strong><span>No continuous location tracking in the reference client.</span></div>
+        <div><strong>Uncertainty-visible</strong><span>Unknown and stale states remain explicit.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="signature">
+      <strong>Chris Cruz | h4ckd4d</strong>
+      <span>Original creator, project owner, and primary maintainer</span>
+      <span class="founder">Founder — Project h4ckd4d</span>
+      <em>“Protect. Detect. Defend.”</em>
+    </div>
+    <p>Developers, CAP implementers, humanitarian technologists, accessibility specialists, privacy engineers, disaster-risk practitioners, QA engineers, translators, and technical writers are invited to contribute professionally.</p>
+  </footer>
+
+  <script src="core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
