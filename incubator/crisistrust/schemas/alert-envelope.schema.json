@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://crisistrust.example/schemas/alert-envelope.schema.json",
+  "title": "CrisisTrust Alert Envelope",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type", "protocol_version", "alert_id", "source", "source_status",
+    "integrity_status", "sent_at", "event", "severity", "urgency", "certainty",
+    "area_description", "instruction"
+  ],
+  "properties": {
+    "record_type": {"const": "alert-envelope"},
+    "protocol_version": {"const": "0.1"},
+    "alert_id": {"type": "string", "minLength": 3},
+    "cap_identifier": {"type": "string"},
+    "language": {"type": "string", "minLength": 2},
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "name": {"type": "string", "minLength": 1},
+        "registry_reference": {"type": "string"},
+        "source_reference": {"type": "string"}
+      }
+    },
+    "source_status": {
+      "enum": ["official-registered", "official-declared", "community-verified", "community-unverified", "unknown"]
+    },
+    "integrity_status": {"enum": ["verified", "not-verified", "failed", "not-applicable"]},
+    "sent_at": {"type": "string", "format": "date-time"},
+    "effective_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "event": {"type": "string", "minLength": 1},
+    "severity": {"enum": ["Extreme", "Severe", "Moderate", "Minor", "Unknown"]},
+    "urgency": {"enum": ["Immediate", "Expected", "Future", "Past", "Unknown"]},
+    "certainty": {"enum": ["Observed", "Likely", "Possible", "Unlikely", "Unknown"]},
+    "area_description": {"type": "string", "minLength": 1},
+    "description": {"type": "string"},
+    "instruction": {"type": "string", "minLength": 1}
+  }
+}
