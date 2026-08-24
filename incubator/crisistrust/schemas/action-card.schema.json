@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://crisistrust.example/schemas/action-card.schema.json",
+  "title": "CrisisTrust Action Card",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "record_type", "protocol_version", "card_id", "alert_id", "source_name",
+    "source_status", "integrity_status", "event", "severity", "urgency",
+    "certainty", "area_description", "source_instruction", "freshness"
+  ],
+  "properties": {
+    "record_type": {"const": "action-card"},
+    "protocol_version": {"const": "0.1"},
+    "card_id": {"type": "string", "minLength": 3},
+    "alert_id": {"type": "string", "minLength": 3},
+    "source_name": {"type": "string", "minLength": 1},
+    "source_status": {
+      "enum": ["official-registered", "official-declared", "community-verified", "community-unverified", "unknown"]
+    },
+    "integrity_status": {"enum": ["verified", "not-verified", "failed", "not-applicable"]},
+    "event": {"type": "string", "minLength": 1},
+    "severity": {"enum": ["Extreme", "Severe", "Moderate", "Minor", "Unknown"]},
+    "urgency": {"enum": ["Immediate", "Expected", "Future", "Past", "Unknown"]},
+    "certainty": {"enum": ["Observed", "Likely", "Possible", "Unlikely", "Unknown"]},
+    "area_description": {"type": "string", "minLength": 1},
+    "source_instruction": {"type": "string", "minLength": 1},
+    "freshness": {"enum": ["current", "expired", "unknown"]},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "source_reference": {"type": "string"}
+  }
+}
