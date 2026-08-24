@@ -1,0 +1,49 @@
+name: CrisisTrust Incubator Validation
+
+on:
+  push:
+    branches: [crisistrust-v0.1-incubator]
+    paths:
+      - "incubator/crisistrust/**"
+      - ".github/workflows/crisistrust-incubator-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  protocol-and-privacy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Validate project structure and privacy boundaries
+        run: python incubator/crisistrust/scripts/validate_project.py
+
+      - name: Test CrisisTrust protocol core
+        run: node incubator/crisistrust/scripts/test_core.js
+
+  documentation-quality:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Lint CrisisTrust Markdown
+        run: npx --yes markdownlint-cli2 "incubator/crisistrust/**/*.md"
